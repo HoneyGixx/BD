@@ -1,0 +1,90 @@
+CREATE TABLE Lexeme (
+	lexid		int not null IDENTITY primary key,
+	lex 		text
+);
+
+CREATE TABLE Lemma (
+	lemid		int not null IDENTITY primary key,
+	lemtype		nchar,
+	lem			text,
+	suffix		text,
+	tag			text,
+	descr		text,
+	lexid 		int not null references Lexeme(lexid)
+);
+
+select * 
+from Lemma
+
+select * 
+from Lexeme
+
+insert  into dbo.Lexeme ( lex) values ( 'hkjklj')
+
+
+
+CREATE TABLE Lexeme (
+	lexid		int not null identity primary key,
+	lex 		varchar(max)
+);
+
+CREATE TABLE Lemma (
+	lemid		int not null identity primary key,
+	lemtype		char,
+	lem			varchar(max),
+	suffix		varchar(max),
+	tag			varchar(max),
+	descr		varchar(max),
+	lexid 		int not null references Lexeme(lexid)
+);
+
+select *
+from
+dbo.Lexeme
+
+select *
+from
+dbo.Lemma
+
+
+insert into Dims3.dbo.Lexeme(lex) values ('ssss')
+insert into  Dims3.dbo.Lemma(lemid, lemtype, lem, suffix, tag, descr, lexid) values (null, 's', 'd', 'f', 'x', 'h', 10)
+
+select *
+from
+dbo.Lemma
+where dbo.Lemma.lexid = 1553
+
+SELECT *
+FROM dbo.Lemma
+ JOIN dbo.Lexeme on dbo.Lexeme.lexid = dbo.Lemma.lexid 
+
+SELECT *
+FROM dbo.Lemma
+inner JOIN dbo.Lexeme on dbo.Lexeme.lexid = dbo.Lemma.lexid  where dbo.Lemma.suffix = 'чик'
+
+SELECT 
+lem,
+lex
+FROM dbo.Lemma
+JOIN dbo.Lexeme on dbo.Lexeme.lexid = dbo.Lemma.lexid where dbo.Lemma.suffix = 'чик'
+
+SELECT dbo.Lemma.lem, 
+dbo.Lexeme.lex, 
+dbo.Lemma.suffix, 
+dbo.Lemma.tag, 
+dbo.Lemma.descr
+FROM dbo.Lemma
+JOIN dbo.Lexeme ON dbo.Lexeme.lexid = dbo.Lemma.lexid
+WHERE Lemma.suffix = 'чик'
+
+
+select *
+from
+dbo.Lexeme
+where dbo.Lexeme.lex='дом'
+
+SELECT dbo.Lemma.lemtype, dbo.Lexeme.lex, dbo.Lemma.suffix, dbo.Lemma.tag, dbo.Lemma.descr
+                FROM dbo.Lemma
+                JOIN dbo.Lexeme ON dbo.Lexeme.lexid = Lemma.lexid
+                WHERE dbo.Lemma.lem = 'домик'

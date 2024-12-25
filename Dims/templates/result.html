@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>adcorpus результат поиска</title>
+		<link href={{ url_for('static', filename='style1.css') }} rel="stylesheet">
+		<script type="text/javascript">
+        window.addEventListener("DOMContentLoaded", function() {
+            var nodes = document.querySelectorAll(".result");
+            [].forEach.call(nodes, function(tr) {
+                var box = [],
+                    next = tr.nextElementSibling;
+                while (next && next.classList.contains("box")) {
+                    box.push(next);
+                    next = next.nextElementSibling
+                }
+                tr.cells[0].addEventListener("click", function(e) {
+					e.preventDefault();
+                    box.forEach(function(item) {
+                        item.classList.toggle("show")
+                    });
+                    return false
+                })
+            })
+        });
+		</script>
+	</head>
+	<body>
+	<div class="header">
+		<div class="content">
+			<b>Диминутивчики и аугментативищи</b>
+		</div>
+	</div>
+	<div class="menu">
+		<div class="btn-group">
+			<a href={{ url_for('index') }} class="button2">главная</a>
+			<a href={{ url_for('search') }} class="button2">расширенный поиск</a>
+			<a href={{ url_for('rules') }} class="button2">правила</a>
+			<a href={{ url_for('exercises') }} class="button2">извлечение</a>
+		</div>
+	</div>
+	<div class="lemform">
+		<div class="content">
+			<form action = {{ url_for('result') }} method = "POST">
+				Поиск по форме слова: <input type='text' name='lem'>
+				<input class='button' type='reset' value='Очистить'>
+				<input class='button' type='submit' value='Поиск'>
+			 </form>
+		</div>
+	</div>
+	<div class="main">
+		<div class="content">
+			Результат для формы <i>{{ form }}</i>
+				<br>
+			{% if lemma != '' %}
+				Результат для формы <i>{{ lemma }}</i>
+				<br>
+				{% if form == [] %}
+					<h3>Форма не найдена</h3>
+				{% else %}
+					<br>
+					<table>
+						<th></th><th>Тип</th><th>Лексема</th><th>Суффикс</th><th>Значение суффикса</th>
+					{% for lemtype, lexeme, suffix, tag, descr in form %}
+						<tr class='result'>
+							<td class='plus'><a href="#"> +</a></td>
+							<td> {% if lemtype == 'd' %} диминутив {% else %} аугментатив {% endif %}</td>
+							<td> {{ lexeme }} </td>
+							<td> {{ suffix.replace('*','') }} </td>
+							<td> {{ tag.replace('*','') }} </td>
+						</tr>
+						<tr class='box'>
+							<td colspan = "5"> {% autoescape off %}{{ descr }}{% endautoescape %} </td>
+						</tr>
+					{% endfor %}
+					</table>
+				{% endif %}
+			{% else %}
+				{% if lexeme == "" %}
+					Формы подходящие выбранным параметрам
+					<br>
+					{% if dim != [] %}
+						<br>Диминутивы:
+						<br><br>
+						<table>
+							<th></th><th>Лемма</th><th>Лексема</th><th>Суффикс</th><th>Значение суффикса</th>
+						{% for lexeme, lemma, suffix, tag, descr in dim %}
+							<tr class='result'>
+								<td class='plus'><a href="#"> +</a></td>
+								<td> {{ lemma }} </td>
+								<td> {{ lexeme }} </td>
+								<td> {{ suffix.replace('*','') }} </td>
+								<td> {{ tag }} </td>
+							</tr>
+							<tr class='box'>
+								<td colspan = "5"> {% autoescape off %}{{ descr }}{% endautoescape %} </td>
+							</tr>
+						{% endfor %}
+						</table>
+					{% endif %}
+					{% if aug != [] %}
+						<br> Аугментативы:
+						<br><br>
+						<table>
+							<th></th><th>Лемма</th><th>Лексема</th><th>Суффикс</th><th>Значение суффикса</th>
+						{% for lemma, lexeme, suffix, tag, descr in aug %}
+							<tr class='result'>
+								<td class='plus'><a href="#"> +</a></td>
+								<td> {{ lemma }} </td>
+								<td> {{ lexeme }} </td>
+								<td> {{ suffix }} </td>
+								<td> {{ tag.replace('*','') }} </td>
+							</tr>
+							<tr class='box'>
+								<td colspan = "5"> {% autoescape off %}{{ descr }}{% endautoescape %} </td>
+							</tr>
+						{% endfor %}
+						</table>
+					{% endif %}
+					<br>
+					{% if dim == [] and aug == [] %}
+						<h3>Не найдено</h3>
+					{% endif %}
+				{% else %}
+					Формы от лексемы <i>{{ lexeme }}</i>
+					<br>
+					{% if dim != [] %}
+						<br>Диминутивы:
+						<br><br>
+						<table>
+							<th></th><th>Лемма</th><th>Суффикс</th><th>Значение суффикса</th>
+						{% for  lexeme, lemma, suffix, tag, descr in dim %}
+							<tr class='result'>
+								<td class='plus'><a href="#"> +</a></td>
+								<td> {{ lemma }} </td>
+								<td> {{ suffix.replace('*','') }} </td>
+								<td> {{ tag }} </td>
+							</tr>
+							<tr class='box'>
+								<td colspan = "5"> {% autoescape off %}{{ descr }}{% endautoescape %} </td>
+							</tr>
+						{% endfor %}
+						</table>
+					{% endif %}
+					{% if aug != [] %}
+						<br>Аугментативы:
+						<br><br>
+						<table>
+							<th></th><th>Лемма</th><th>Суффикс</th><th>Значение суффикса</th>
+						{% for lexeme, lemma, suffix, tag, descr in aug %}
+							<tr class='result'>
+								<td class='plus'><a href="#"> +</a></td>
+								<td> {{ lemma }} </td>
+								<td> {{ suffix }} </td>
+								<td> {{ tag.replace('*','') }} </td>
+							</tr>
+							<tr class='box'>
+								<td colspan = "5"> {% autoescape off %}{{ descr }}{% endautoescape %} </td>
+							</tr>
+						{% endfor %}
+						</table>
+					{% endif %}
+					<br>
+					{% if dim == [] and aug == [] %}
+						<h3>Не найдено</h3>
+					{% endif %}
+				{% endif %}
+			{% endif %}
+		</div>
+	</div>
+	</body>
+</html>

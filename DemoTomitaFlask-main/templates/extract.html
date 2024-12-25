@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Результат извлечения диминутивов</title>
+		<link href={{ url_for('static', filename='style1.css') }} rel="stylesheet">
+		<script type="text/javascript">
+        window.addEventListener("DOMContentLoaded", function() {
+            var nodes = document.querySelectorAll(".extract");
+            [].forEach.call(nodes, function(tr) {
+                var box = [],
+                    next = tr.nextElementSibling;
+                while (next && next.classList.contains("box")) {
+                    box.push(next);
+                    next = next.nextElementSibling
+                }
+                tr.cells[0].addEventListener("click", function(e) {
+					e.preventDefault();
+                    box.forEach(function(item) {
+                        item.classList.toggle("show")
+                    });
+                    return false
+                })
+            })
+        });
+		</script>
+	</head>
+	<body>
+	 <div class="header">
+		<div class="content">
+			<b>Диминутивчики и аугментативищи</b>
+		</div>
+	</div>
+	<div class="menu">
+		<div class="btn-group">
+			<a href={{ url_for('index') }} class="button2">главная</a>
+			<a href={{ url_for('search') }} class="button2">расширенный поиск</a>
+			<a href={{ url_for('rules') }} class="button2">правила</a>
+			<a href={{ url_for('exercises') }} class="button2">извлечение</a>
+		</div>
+	</div>
+	<h1>Hello!</h1>
+	</body>
+</html>

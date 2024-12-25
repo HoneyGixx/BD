@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>adcorpus извлечение</title>
+		<link href={{ url_for('static', filename='style1.css') }} rel="stylesheet">
+	</head>
+	<body>
+	<div class="header">
+		<div class="content">
+			<b>Диминутивчики и аугментативищи</b>
+		</div>
+	</div>
+	<div class="menu">
+		<div class="btn-group">
+			<a href={{ url_for('index') }} class="button2">главная</a>
+			<a href={{ url_for('search') }} class="button2">расширенный поиск</a>
+			<a href={{ url_for('rules') }} class="button2">правила</a>
+			<a href={{ url_for('exercises') }} class="active">извлечение</a>
+		</div>
+	</div>
+	<div class="lemform">
+		<div class="content">
+			<a href="https://moodlecloud.com/en/" class="button_nav" target="_blank">извлечение диминутивов</a>
+		</div>
+	</div>
+	<div class="main">
+		<div class="content">
+			<h2>Инструкция для извлечения диминутивов из текста</h2>
+				<p>1)	Введите в форму текст.</p>
+				<br>
+				<p>2)	Нажмите конпку "извлечь"</p>
+				<br>
+				<p>3)	Введите следующие данные:</p>
+				<br>
+			<form action = "extract" method = "post">
+			<div class="form-group">
+				<textarea input class="form-control"  name = txt id="exampleFormControlTextarea1" placeholder="Введите текст" placeholder=".form-control-lg" cols = 80 rows="10"></textarea>
+				
+			</div>
+			<input type = "submit" name = "submit" value = "Add">
+			<div class="btn-group" role="group" aria-label="Basic example">
+				<button type="button" class="btn btn-secondary">Извлечь</button>
+				<button type="button" class="btn btn-secondary">Отчистить</button>
+				
+			</div>
+			</form>
+			<br>
+		</div>
+	</div>
+	</body>
+</html>

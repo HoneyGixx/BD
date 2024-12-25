@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Фронт Томита</title>
+		<link href={{ url_for('static', filename='style1.css') }} rel="stylesheet">
+	</head>
+	<body>
+	<div class="header">
+		<div class="content">
+			<b>Извлечение фактов томита</b>
+		</div>
+	</div>
+	<div class="menu">
+		<div class="btn-group">
+			<a href={{ url_for('index') }} class="active">главная</a>
+			<a href={{ url_for('exercises') }} class="button2">извлечение</a>
+		</div>
+	</div>
+	
+	<div class="main">
+		<div class="content">
+			<h2>О проекте.</h2>
+				<p>Пример извлечения формальных грамматик на основе Томиты парсера. </p>
+			<h2>Возможности.</h2>
+				<h3>Извлечение.</h3> 
+					<p>В данном примере демонстрируется возможность интеграции фориальных граматик (прилагательное+существительное) с интеграцией flask.</p>
+				<h3>Информационные технологии</h3> 
+					<p></p>
+				<br><br>
+					<p>Пример выполнен в рамках курса, посвященному интеграции бэк и фрон энда.</p>
+					<p>Преподаватель: Степаненко А.А.</p>
+			<h2>Этапы работы.</h2>
+				<h3>Томита формальные грамматики.</h3> 
+					<i>Насройка грамматик:</i>
+					<p><br>Конфигурация файлов proto, cxx, gzt 
+					<br>Проверка работы</p>
+				<h3>Интеграция.</h3> 
+					<i>Flask+Docker:</i>
+					<p><br>Установка и длокальный запуск Flask 
+					<br>Настройка контейнера Docker</p>
+			<br><br><i><a class="button" href = "https://habr.com/ru/articles/310460/" target="_blank">Ссылка</a></i>
+		</div>
+	</div>
+	</body>
+</html>

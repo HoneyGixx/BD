@@ -1,0 +1,15 @@
+encoding "utf8";
+TTextMinerConfig {
+  Dictionary = "nounfr.gzt";  
+  PrettyOutput = "templates/pretty.html";
+  Input = {
+    File = "test.txt"; 
+  }
+  Articles = [
+    { Name = "СущПрил" }
+  ]
+ 
+  Output = {
+    Format = text;
+  }
+}
